@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Time tracking dashboard | A Frontend Mentor challenge</title>
+    <link rel="icon" type="image/svg+xml" href="./images/favicon-32x32.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./scss/main.scss" />
+    <script defer src="./js/main.js"></script>
+  </head>
+  <body>
+    <main id="main">
+      <div class="dashboard">
+        <div id="dashboard-header" class="dashboard__header">
+          <div class="dashboard__user">
+            <img
+              class="dashboard__user-image"
+              src="./images/image-jeremy.png"
+              alt=""
+            />
+            <div class="dashboard__user-info">
+              <p class="user__overline">Report for</p>
+              <h2 class="user__name" id="tabs-title">Jeremy Robson</h2>
+            </div>
+          </div>
+          <ul aria-labelledby="tabs-title" class="tabs" id="tabs">
+            <li>
+              <a id="tab-daily" href="#panel-daily">Daily</a>
+            </li>
+            <li>
+              <a id="tab-monthly" href="#panel-weekly">Weekly</a>
+            </li>
+            <li>
+              <a id="tab-yearly" href="#panel-monthly">Monthly</a>
+            </li>
+          </ul>
+        </div>
+
+        <div id="tabs-container">
+          <div class="tabs__panels flow">
+            <div
+              id="panel-daily"
+              rold="tabpanel"
+              class="tab__panel"
+              aria-labelledby="tab-daily"
+              tabindex="0"
+            ></div>
+            <div
+              id="panel-weekly"
+              role="tabpanel"
+              class="tab__panel"
+              aria-labelledby="tab-weekly"
+              tabindex="0"
+            ></div>
+
+            <div
+              id="panel-monthly"
+              role="tabpanel"
+              class="tab__panel"
+              aria-labelledby="tab-monthly"
+              tabindex="0"
+            ></div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
