@@ -40,31 +40,70 @@ function getMonthlyData(data) {
 
 function renderDailyData(dailyData) {
   const container = document.getElementById("panel-daily");
-  container.innerHTML = "";
+  container.innerHTML = "<div class='stats__wrapper'></div>";
   dailyData.forEach((item) => {
-    const div = document.createElement("div");
-    div.textContent = `${item.title}: Daily - Current: ${item.daily.current}, Previous: ${item.daily.previous}`;
-    container.appendChild(div);
+    const statCard = document.createElement("div");
+    statCard.classList.add("stat-card");
+    statCard.setAttribute("data-title", item.title);
+    statCard.innerHTML = `
+        <div class="stat-card__container">
+          <div class="stat-card__header">
+            <h3 class="stat-card__title">${item.title}</h3>
+            <a href="#" class="stat-card__more-infos" aria-label="${item.title} stats details">···</a>
+          </div>
+          <div class="stat-card__timeframes">
+            <p class="stat-card__data-current">${item.daily.current}hrs</p>
+            <p class="stat-card__data-previous">Yesterday - ${item.daily.previous}hrs</p>
+          </div>
+        </div>
+      `;
+    container.querySelector(".stats__wrapper").appendChild(statCard);
   });
 }
 
 function renderWeeklyData(weeklyData) {
   const container = document.getElementById("panel-weekly");
-  container.innerHTML = "";
+  container.innerHTML = "<div class='stats__wrapper'></div>";
   weeklyData.forEach((item) => {
-    const div = document.createElement("div");
-    div.textContent = `${item.title}: Weekly - Current: ${item.weekly.current}, Previous: ${item.weekly.previous}`;
-    container.appendChild(div);
+    const statCard = document.createElement("div");
+    statCard.classList.add("stat-card");
+    statCard.setAttribute("data-title", item.title);
+    statCard.innerHTML = `
+        <div class="stat-card__container">
+          <div class="stat-card__header">
+            <h3 class="stat-card__title">${item.title}</h3>
+            <a href="#" class="stat-card__more-infos" aria-label="${item.title} stats details">···</a>
+          </div>
+          <div class="stat-card__timeframes">
+            <p class="stat-card__data-current">${item.weekly.current}hrs</p>
+            <p class="stat-card__data-previous">Last Week - ${item.weekly.previous}hrs</p>
+          </div>
+        </div>
+      `;
+    container.querySelector(".stats__wrapper").appendChild(statCard);
   });
 }
 
 function renderMonthlyData(monthlyData) {
   const container = document.getElementById("panel-monthly");
-  container.innerHTML = "";
+  container.innerHTML = "<div class='stats__wrapper'></div>";
   monthlyData.forEach((item) => {
-    const div = document.createElement("div");
-    div.textContent = `${item.title}: Monthly - Current: ${item.monthly.current}, Previous: ${item.monthly.previous}`;
-    container.appendChild(div);
+    const statCard = document.createElement("div");
+    statCard.classList.add("stat-card");
+    statCard.setAttribute("data-title", item.title);
+    statCard.innerHTML = `
+        <div class="stat-card__container" data-title="${item.title}">
+          <div class="stat-card__header">
+            <h3 class="stat-card__title">${item.title}</h3>
+            <a href="#" class="stat-card__more-infos" aria-label="${item.title} stats details">···</a>
+          </div>
+          <div class="stat-card__timeframes">
+            <p class="stat-card__data-current">${item.monthly.current}hrs</p>
+            <p class="stat-card__data-previous">Last Month - ${item.monthly.previous}hrs</p>
+          </div>
+        </div>
+      `;
+    container.querySelector(".stats__wrapper").appendChild(statCard);
   });
 }
 

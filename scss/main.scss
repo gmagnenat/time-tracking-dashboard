@@ -10,18 +10,19 @@ body {
   font-family: $ff;
   line-height: 1.6;
   font-weight: 400;
+  padding-inline: 1rem;
   background-color: $clr-base-900;
+
+  display: flex;
+  flex-direction: column;
+  min-height: 100svh;
+  justify-content: center;
 }
 
 h1,
 h2,
 h3 {
   font-weight: 300;
-}
-
-#main {
-  max-width: 25rem;
-  margin-inline: auto;
 }
 
 /**********************************************
@@ -76,22 +77,100 @@ h3 {
 // stats card
 .stats__wrapper {
   margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .stat-card {
-  background-color: orangered;
-  border-radius: 10px;
-  padding-top: 2rem;
+  border-radius: 15px;
+  padding-top: 2.375rem;
   overflow: hidden;
 }
 
-.stat-card__data {
+.stat-card[data-title="Work"] {
+  background: url("../images/icon-work.svg") $clr-light-red1 no-repeat;
+  background-position: 95% -10px;
+  background-size: 4.875rem;
+}
+.stat-card[data-title="Play"] {
+  background: url("../images/icon-play.svg") $clr-soft-blue no-repeat;
+  background-position: 95% -10px;
+}
+.stat-card[data-title="Study"] {
+  background: url("../images/icon-study.svg") $clr-light-red2 no-repeat;
+  background-position: 95% -10px;
+}
+.stat-card[data-title="Exercise"] {
+  background: url("../images/icon-exercise.svg") $clr-lime-green no-repeat;
+  background-position: 95% 0;
+}
+.stat-card[data-title="Social"] {
+  background: url("../images/icon-social.svg") $clr-violet no-repeat;
+  background-position: 95% -10px;
+}
+.stat-card[data-title="Self Care"] {
+  background: url("../images/icon-self-care.svg") $clr-soft-orange no-repeat;
+  background-position: 95% -10px;
+}
+
+.stat-card__container {
+  display: flex;
+  flex-direction: column;
+  background-color: $clr-base-800;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  padding: 1.5rem;
+  position: relative;
+}
+
+.stat-card__container:focus-within,
+.stat-card__container:hover {
+  background-color: #33397a;
+}
+
+.stat-card__header {
   display: flex;
   justify-content: space-between;
-  background-color: $clr-base-800;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  padding: 1rem;
+  align-items: center;
+}
+
+.stat-card__more-infos {
+  font-size: 2rem;
+  text-decoration: none;
+  color: $clr-primary-100;
+
+  &:hover,
+  &:focus {
+    color: $clr-white;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+}
+
+.stat-card__title {
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.stat-card__timeframes {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stat-card__data-current {
+  font-size: 2rem;
+  font-weight: 100;
+}
+
+.stat-card__data-previous {
+  color: $clr-primary-100;
 }
 
 /**********************************************
@@ -109,6 +188,69 @@ h3 {
 /**********************************************
 * =Responsive
 **********************************************/
+@media screen and (min-width: 48em) {
+  .dashboard {
+    display: grid;
+    grid-template-areas:
+      "header stats stats stats"
+      "header stats stats stats"
+      "header stats stats stats";
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto auto auto;
+    gap: 1rem;
+    max-width: 69.375rem;
+    margin-inline: auto;
+  }
+
+  .dashboard__header {
+    grid-area: header;
+    border-radius: 15px;
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+  }
+
+  .dashboard__user {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    flex-grow: 1;
+    padding: 2rem;
+  }
+
+  .user__name {
+    font-size: 2.5rem;
+    line-height: 1.2;
+  }
+
+  .dashboard__tabs {
+    grid-area: stats;
+  }
+
+  .tabs {
+    flex-direction: column;
+    padding-inline: 2rem;
+    margin-top: auto;
+    gap: 1.3125rem;
+
+    a:hover,
+    a:focus {
+      color: $clr-white;
+    }
+  }
+
+  .stats__wrapper {
+    display: grid;
+    margin-top: 0;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .stat-card__timeframes {
+    flex-direction: column;
+    align-items: start;
+  }
+}
 
 /**********************************************
 * =Print
