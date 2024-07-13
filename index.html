@@ -29,15 +29,41 @@
               <h2 class="user__name" id="tabs-title">Jeremy Robson</h2>
             </div>
           </div>
-          <ul aria-labelledby="tabs-title" class="tabs" id="tabs">
+          <ul
+            aria-labelledby="tabs-title"
+            class="tabs"
+            id="tabs"
+            aria-orientation="vertical"
+          >
             <li>
-              <a id="tab-daily" href="#panel-daily">Daily</a>
+              <a
+                id="tab-daily"
+                href="#panel-daily"
+                aria-controls="panel-daily"
+                data-timeframe="daily"
+                aria-selected="true"
+                >Daily</a
+              >
             </li>
             <li>
-              <a id="tab-monthly" href="#panel-weekly">Weekly</a>
+              <a
+                id="tab-weekly"
+                href="#panel-weekly"
+                aria-controls="panel-weekly"
+                data-timeframe="weekly"
+                aria-selected="false"
+                >Weekly</a
+              >
             </li>
             <li>
-              <a id="tab-yearly" href="#panel-monthly">Monthly</a>
+              <a
+                id="tab-monthly"
+                href="#panel-monthly"
+                aria-controls="panel-monthly"
+                data-timeframe="monthly"
+                aria-selected="false"
+                >Monthly</a
+              >
             </li>
           </ul>
         </div>
@@ -46,25 +72,18 @@
           <div class="tabs__panels flow">
             <div
               id="panel-daily"
-              rold="tabpanel"
               class="tab__panel"
               aria-labelledby="tab-daily"
-              tabindex="0"
             ></div>
             <div
               id="panel-weekly"
-              role="tabpanel"
               class="tab__panel"
               aria-labelledby="tab-weekly"
-              tabindex="0"
             ></div>
-
             <div
               id="panel-monthly"
-              role="tabpanel"
               class="tab__panel"
               aria-labelledby="tab-monthly"
-              tabindex="0"
             ></div>
           </div>
         </div>

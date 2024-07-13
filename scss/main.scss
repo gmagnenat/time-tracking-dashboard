@@ -72,6 +72,10 @@ h3 {
 .tabs a {
   text-decoration: none;
   color: $clr-primary-200;
+
+  &[aria-selected="true"] {
+    color: $clr-white;
+  }
 }
 
 // stats card
@@ -263,20 +267,3 @@ h3 {
 /**********************************************
 * =Custom
 **********************************************/
-
-[role="tablist"] {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  gap: 1rem;
-
-  a {
-  }
-}
-
-[aria-selected="false"] {
-  text-decoration-color: transparent;
-}
-
-[aria-selected="true"] {
-}
