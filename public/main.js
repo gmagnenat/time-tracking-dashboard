@@ -3,6 +3,14 @@ const tabsList = document.getElementById("tabs");
 const tabButtons = tabsList.querySelectorAll("a");
 const tabPanels = tabsContainer.querySelectorAll(".tab__panel");
 
+window.matchMedia("(min-width: 48em)").addEventListener("change", (query) => {
+  if (query.matches) {
+    console.log("desktop view");
+  } else {
+    console.log("mobile view");
+  }
+});
+
 tabsList.setAttribute("role", "tablist");
 tabsList.querySelectorAll("li").forEach((listItem) => {
   listItem.setAttribute("role", "presentation");
@@ -48,7 +56,7 @@ function processData(data, timeframe) {
   }));
 }
 
-function createStatCard(item) {
+function createStatCard(item, timeframeLabel) {
   const statCard = document.createElement("div");
   statCard.classList.add("stat-card");
   statCard.setAttribute("data-title", item.title);
@@ -56,36 +64,36 @@ function createStatCard(item) {
     <div class="stat-card__container">
       <div class="stat-card__header">
         <h3 class="stat-card__title">${item.title}</h3>
-        <a href="#" class="stat-card__more-infos" aria-label="${item.title} stats details">···</a>
+        <button href="#" class="stat-card__menu-toggle" aria-label="menu - ${item.title}" aria-expended="false">···</button>
       </div>
       <div class="stat-card__timeframes">
         <p class="stat-card__data-current">${item.data.current}hrs</p>
-        <p class="stat-card__data-previous">Yesterday - ${item.data.previous}hrs</p>
+        <p class="stat-card__data-previous">${timeframeLabel} - ${item.data.previous}hrs</p>
       </div>
     </div>
   `;
   return statCard;
 }
 
-function renderData(data, panelId) {
+function renderData(data, panelId, timeframeLabel) {
   const container = document.getElementById(panelId);
   container.innerHTML = "<div class='stats__wrapper'></div>";
   const statsWrapper = container.querySelector(".stats__wrapper");
   statsWrapper.innerHTML = "";
   data.forEach((item) => {
-    const statCard = createStatCard(item);
+    const statCard = createStatCard(item, timeframeLabel);
     statsWrapper.appendChild(statCard);
   });
 }
 
 // function to fetch data by a given timeframe and panelId
-async function initializeTimeframe(timeframe, panelId) {
+async function initializeTimeframe(timeframe, panelId, timeframeLabel) {
   try {
     if (!fetchedData) {
       fetchedData = await fetchData();
     }
     const processedData = processData(fetchedData, timeframe);
-    renderData(processedData, panelId);
+    renderData(processedData, panelId, timeframeLabel);
   } catch (error) {
     console.error("Error initializing timeframe:", error.message);
   }
@@ -98,17 +106,9 @@ tabButtons.forEach((tab) => {
 
     // get the clicked tab
     const clickedTab = e.target.closest("a");
-    // if (!clickedTab) return;
-
-    // // set timeframes and the panel to be displayed
-    // const timeframe = clickedTab.getAttribute("data-timeframe");
-    // const panelId = clickedTab.getAttribute("href").substring(1);
 
     // switch tab
     switchTab(clickedTab);
-
-    // fetch data for the selected timeframe and render it to the active panel
-    // await initializeTimeframe(timeframe, panelId);
   });
 
   tab.addEventListener("keydown", (e) => {
@@ -118,6 +118,20 @@ tabButtons.forEach((tab) => {
         break;
       case "ArrowRight":
         moveRight();
+        break;
+      case "ArrowDown":
+        moveRight();
+        break;
+      case "ArrowUp":
+        moveLeft();
+        break;
+      case "Home":
+        e.preventDefault();
+        switchTab(tabButtons[0]);
+        break;
+      case "End":
+        e.preventDefault();
+        switchTab(tabButtons[tabButtons.length - 1]);
         break;
     }
   });
@@ -162,7 +176,9 @@ function switchTab(newTab) {
 
 // Initialize daily data on page load
 window.addEventListener("DOMContentLoaded", async () => {
-  await initializeTimeframe("daily", "panel-daily");
-  await initializeTimeframe("weekly", "panel-weekly");
-  await initializeTimeframe("monthly", "panel-monthly");
+  await initializeTimeframe("daily", "panel-daily", "Yesterday");
+  await initializeTimeframe("weekly", "panel-weekly", "Last Week");
+  await initializeTimeframe("monthly", "panel-monthly", "Last Month");
+
+  // check viewport width
 });
