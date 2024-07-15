@@ -86,28 +86,28 @@ h3 {
   overflow: hidden;
 }
 
-.stat-card[aria-labeledby="Work"] {
+.stat-card[aria-labelledby="Work"] {
   background: url("../images/icon-work.svg") $clr-light-red1 no-repeat;
   background-position: 95% -10px;
   background-size: 4.875rem;
 }
-.stat-card[aria-labeledby="Play"] {
+.stat-card[aria-labelledby="Play"] {
   background: url("../images/icon-play.svg") $clr-soft-blue no-repeat;
   background-position: 95% -10px;
 }
-.stat-card[aria-labeledby="Study"] {
+.stat-card[aria-labelledby="Study"] {
   background: url("../images/icon-study.svg") $clr-light-red2 no-repeat;
   background-position: 95% -10px;
 }
-.stat-card[aria-labeledby="Exercise"] {
+.stat-card[aria-labelledby="Exercise"] {
   background: url("../images/icon-exercise.svg") $clr-lime-green no-repeat;
   background-position: 95% 0;
 }
-.stat-card[aria-labeledby="Social"] {
+.stat-card[aria-labelledby="Social"] {
   background: url("../images/icon-social.svg") $clr-violet no-repeat;
   background-position: 95% -10px;
 }
-.stat-card[aria-labeledby="Self Care"] {
+.stat-card[aria-labelledby="Self Care"] {
   background: url("../images/icon-self-care.svg") $clr-soft-orange no-repeat;
   background-position: 95% -10px;
 }

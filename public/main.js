@@ -53,12 +53,12 @@ function processData(data, timeframe) {
 function createStatCard(item, timeframeLabel) {
   const statCard = document.createElement("section");
   statCard.classList.add("stat-card");
-  statCard.setAttribute("aria-labeledby", item.title);
+  statCard.setAttribute("aria-labelledby", item.title);
   statCard.innerHTML = `
     <div class="stat-card__container">
       <div class="stat-card__header">
         <h3 class="stat-card__title">${item.title}</h3>
-        <button href="#" class="stat-card__menu-toggle" aria-label="menu - ${item.title}" aria-expended="false">···</button>
+        <button href="#" class="stat-card__menu-toggle" aria-label="menu - ${item.title}" aria-expanded="false">···</button>
       </div>
       <div class="stat-card__timeframes">
         <p class="stat-card__data-current">${item.data.current}hrs</p>
