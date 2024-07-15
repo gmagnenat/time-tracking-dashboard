@@ -58,11 +58,11 @@ function createStatCard(item, timeframeLabel) {
     <div class="stat-card__container">
       <div class="stat-card__header">
         <h3 class="stat-card__title">${item.title}</h3>
-        <button href="#" class="stat-card__menu-toggle" aria-label="menu - ${item.title}" aria-expanded="false">···</button>
+        <button class="stat-card__menu-toggle" aria-label="menu - ${item.title}" aria-expanded="false">···</button>
       </div>
       <div class="stat-card__timeframes">
-        <p class="stat-card__data-current">${item.data.current}hrs</p>
-        <p class="stat-card__data-previous">${timeframeLabel} - ${item.data.previous}hrs</p>
+        <p class="stat-card__data-current"><time datetime="PT${item.data.current}H">${item.data.current}hrs</time></p>
+        <p class="stat-card__data-previous">${timeframeLabel} - <time datetime="PT${item.data.previous}H">${item.data.previous}hrs</time> </p>
       </div>
     </div>
   `;
