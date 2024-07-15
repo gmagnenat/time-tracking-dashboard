@@ -14,7 +14,6 @@ This is a solution to the [Time tracking dashboard challenge on Frontend Mentor]
   - [Continued development](#continued-development)
   - [Useful resources](#useful-resources)
 - [Author](#author)
-- [Acknowledgments](#acknowledgments)
 
 ## Overview
 
@@ -33,7 +32,7 @@ Users should be able to:
 ### Links
 
 - Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Live Site URL: [https://quiet-hamster-daa026.netlify.app/](https://quiet-hamster-daa026.netlify.app/)
 
 ## My process
 
@@ -51,7 +50,54 @@ Users should be able to:
 
 - the `data.json` and `main.js` file needs to be in the /public folder. Vite will serve everthing from the public folder at the root of the site.
 
-_**Fetch API**_
+_**Fetch API**_  
+I use this function to fetch data from the json file. I added a try catch with error handling in case of a failure.
+
+```js
+async function fetchData() {
+  try {
+    const response = await fetch("data.json");
+    if (!response.ok) {
+      throw new Error("Failed to fetch data.");
+    }
+    return await response.json();
+  } catch (error) {
+    console.error("Error fetching data:", error.message);
+    throw error;
+  }
+}
+```
+
+I use this function to process the data for the corresponding pannel. It will map on the fetched data and extract the desired timeframed data.
+
+I call the function with two parameters, the timeframe (daily, weekly, monthly) and the panel id.
+
+```js
+// function to fetch data by a given timeframe and panelId
+async function initializeTimeframe(timeframe, panelId, timeframeLabel) {
+  try {
+    if (!fetchedData) {
+      fetchedData = await fetchData();
+    }
+    const processedData = processData(fetchedData, timeframe);
+    renderData(processedData, panelId, timeframeLabel);
+  } catch (error) {
+    console.error("Error initializing timeframe:", error.message);
+  }
+}
+```
+
+The following function will map on the data and return a new array with the values corresponding to the given timeframe
+
+```js
+// function to process data and return specific timeframe data
+function processData(data, timeframe) {
+  return data.map((item) => ({
+    title: item.title,
+    data: item.timeframes[timeframe],
+  }));
+}
+```
 
 _**Tabs pattern**_  
 That's my first time doing a tabs interface from sratch. There are some things to consider to make the tabs accessible and navigable by keyboard. Tabs interface require JavaScript to handle these interactions.  
@@ -88,7 +134,9 @@ It can be interesting to take progressive enhancement in consideration and add t
 
 ### Continued development
 
-It would be nice to add a menu on the activity card with some options like "edit, delete"
+It would be nice to add a menu on the activity card with some options like "edit, delete".
+
+The activity card has an hover background color. I didn't add a link here but the card itself could be a link to a page with more details on this activity maybe.
 
 ### Useful resources
 

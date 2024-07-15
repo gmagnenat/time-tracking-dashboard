@@ -189,9 +189,8 @@ function switchTab(newTab) {
 
 // Initialize daily data on page load
 window.addEventListener("DOMContentLoaded", async () => {
+  // I initialize all panels here but it's possible to initialize only the default panel and the other ones when they are clicked
   await initializeTimeframe("daily", "panel-daily", "Yesterday");
   await initializeTimeframe("weekly", "panel-weekly", "Last Week");
   await initializeTimeframe("monthly", "panel-monthly", "Last Month");
-
-  // check viewport width
 });
