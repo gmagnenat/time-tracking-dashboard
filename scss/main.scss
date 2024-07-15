@@ -52,6 +52,10 @@ h3 {
   border: 2px solid $clr-neutral-100;
 }
 
+.user__overline {
+  color: $clr-primary-100;
+}
+
 // tabs
 .tabs {
   display: flex;
@@ -160,7 +164,7 @@ h3 {
 }
 
 .stat-card__data-current {
-  font-size: 2rem;
+  font-size: $fs-current;
   font-weight: 100;
 }
 
@@ -222,6 +226,15 @@ h3 {
   .user__name {
     font-size: 2.5rem;
     line-height: 1.2;
+  }
+
+  .dashboard__user-image {
+    width: 78px;
+    height: 78px;
+  }
+
+  .dashboard__user-info {
+    margin-top: 2.6875rem;
   }
 
   .dashboard__tabs {
