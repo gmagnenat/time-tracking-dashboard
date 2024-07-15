@@ -53,7 +53,7 @@ function processData(data, timeframe) {
 function createStatCard(item, timeframeLabel) {
   const statCard = document.createElement("section");
   statCard.classList.add("stat-card");
-  statCard.setAttribute("aria-labelledby", item.title);
+  statCard.setAttribute("aria-label", item.title);
   statCard.innerHTML = `
     <div class="stat-card__container">
       <div class="stat-card__header">
