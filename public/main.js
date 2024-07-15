@@ -3,13 +3,7 @@ const tabsList = document.getElementById("tabs");
 const tabButtons = tabsList.querySelectorAll("a");
 const tabPanels = tabsContainer.querySelectorAll(".tab__panel");
 
-window.matchMedia("(min-width: 48em)").addEventListener("change", (query) => {
-  if (query.matches) {
-    console.log("desktop view");
-  } else {
-    console.log("mobile view");
-  }
-});
+const isDesktop = window.matchMedia("(min-width: 60em)");
 
 tabsList.setAttribute("role", "tablist");
 tabsList.querySelectorAll("li").forEach((listItem) => {
@@ -57,9 +51,9 @@ function processData(data, timeframe) {
 }
 
 function createStatCard(item, timeframeLabel) {
-  const statCard = document.createElement("div");
+  const statCard = document.createElement("section");
   statCard.classList.add("stat-card");
-  statCard.setAttribute("data-title", item.title);
+  statCard.setAttribute("aria-labeledby", item.title);
   statCard.innerHTML = `
     <div class="stat-card__container">
       <div class="stat-card__header">
@@ -111,30 +105,49 @@ tabButtons.forEach((tab) => {
     switchTab(clickedTab);
   });
 
-  tab.addEventListener("keydown", (e) => {
-    switch (e.key) {
-      case "ArrowLeft":
-        moveLeft();
-        break;
-      case "ArrowRight":
-        moveRight();
-        break;
-      case "ArrowDown":
-        moveRight();
-        break;
-      case "ArrowUp":
-        moveLeft();
-        break;
-      case "Home":
-        e.preventDefault();
-        switchTab(tabButtons[0]);
-        break;
-      case "End":
-        e.preventDefault();
-        switchTab(tabButtons[tabButtons.length - 1]);
-        break;
-    }
-  });
+  // default event listeners for mobile
+  if (!isDesktop.matches) {
+    tab.addEventListener("keydown", (e) => {
+      switch (e.key) {
+        case "ArrowLeft":
+          moveLeft();
+          break;
+        case "ArrowRight":
+          moveRight();
+          break;
+        case "Home":
+          e.preventDefault();
+          switchTab(tabButtons[0]);
+          break;
+        case "End":
+          e.preventDefault();
+          switchTab(tabButtons[tabButtons.length - 1]);
+          break;
+      }
+    });
+  }
+
+  // event listeners for desktop
+  if (isDesktop.matches) {
+    tab.addEventListener("keydown", (e) => {
+      switch (e.key) {
+        case "ArrowUp":
+          moveLeft();
+          break;
+        case "ArrowDown":
+          moveRight();
+          break;
+        case "Home":
+          e.preventDefault();
+          switchTab(tabButtons[0]);
+          break;
+        case "End":
+          e.preventDefault();
+          switchTab(tabButtons[tabButtons.length - 1]);
+          break;
+      }
+    });
+  }
 });
 
 function moveLeft() {

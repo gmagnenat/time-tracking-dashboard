@@ -13,8 +13,7 @@ body {
   padding-inline: 1rem;
   background-color: $clr-base-900;
 
-  display: flex;
-  flex-direction: column;
+  @include flexcol;
   min-height: 100svh;
   justify-content: center;
 }
@@ -25,13 +24,9 @@ h3 {
   font-weight: 300;
 }
 
-/**********************************************
-* =Components
-**********************************************/
 // dashboard
 .dashboard {
-  display: flex;
-  flex-direction: column;
+  @include flexcol;
 }
 
 .dashboard__header {
@@ -80,9 +75,8 @@ h3 {
 
 // stats card
 .stats__wrapper {
+  @include flexcol;
   margin-top: 1.5rem;
-  display: flex;
-  flex-direction: column;
   gap: 1rem;
 }
 
@@ -92,35 +86,34 @@ h3 {
   overflow: hidden;
 }
 
-.stat-card[data-title="Work"] {
+.stat-card[aria-labeledby="Work"] {
   background: url("../images/icon-work.svg") $clr-light-red1 no-repeat;
   background-position: 95% -10px;
   background-size: 4.875rem;
 }
-.stat-card[data-title="Play"] {
+.stat-card[aria-labeledby="Play"] {
   background: url("../images/icon-play.svg") $clr-soft-blue no-repeat;
   background-position: 95% -10px;
 }
-.stat-card[data-title="Study"] {
+.stat-card[aria-labeledby="Study"] {
   background: url("../images/icon-study.svg") $clr-light-red2 no-repeat;
   background-position: 95% -10px;
 }
-.stat-card[data-title="Exercise"] {
+.stat-card[aria-labeledby="Exercise"] {
   background: url("../images/icon-exercise.svg") $clr-lime-green no-repeat;
   background-position: 95% 0;
 }
-.stat-card[data-title="Social"] {
+.stat-card[aria-labeledby="Social"] {
   background: url("../images/icon-social.svg") $clr-violet no-repeat;
   background-position: 95% -10px;
 }
-.stat-card[data-title="Self Care"] {
+.stat-card[aria-labeledby="Self Care"] {
   background: url("../images/icon-self-care.svg") $clr-soft-orange no-repeat;
   background-position: 95% -10px;
 }
 
 .stat-card__container {
-  display: flex;
-  flex-direction: column;
+  @include flexcol;
   background-color: $clr-base-800;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
@@ -145,6 +138,7 @@ h3 {
   border: transparent;
   font-size: 2rem;
   letter-spacing: 0.02em;
+  line-height: 1;
   cursor: pointer;
 
   &:hover,
@@ -159,6 +153,7 @@ h3 {
 }
 
 .stat-card__timeframes {
+  margin-top: 1.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -174,22 +169,16 @@ h3 {
 }
 
 /**********************************************
-* =Layout
-**********************************************/
-
-/**********************************************
-* =Utilities
-**********************************************/
-
-/**********************************************
-* =Animations
-**********************************************/
-
-/**********************************************
 * =Responsive
 **********************************************/
+@media screen and (min-width: 40em) {
+  .stats__wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
 
-@media screen and (min-width: 55em) {
+@media screen and (min-width: 60em) {
   .dashboard {
     display: grid;
     grid-template-areas:
@@ -208,13 +197,11 @@ h3 {
     border-radius: 15px;
     overflow: hidden;
 
-    display: flex;
-    flex-direction: column;
+    @include flexcol;
   }
 
   .dashboard__user {
-    display: flex;
-    flex-direction: column;
+    @include flexcol;
     align-items: start;
     flex-grow: 1;
     padding: 2rem;
@@ -242,7 +229,6 @@ h3 {
   }
 
   .stats__wrapper {
-    display: grid;
     margin-top: 0;
     grid-template-columns: repeat(3, 1fr);
   }
@@ -252,15 +238,3 @@ h3 {
     align-items: start;
   }
 }
-
-/**********************************************
-* =Print
-**********************************************/
-
-/**********************************************
-* =Dark Mode
-**********************************************/
-
-/**********************************************
-* =Custom
-**********************************************/
