@@ -57,7 +57,7 @@ function createStatCard(item, timeframeLabel) {
   statCard.innerHTML = `
     <div class="stat-card__container">
       <div class="stat-card__header">
-        <a href="#" class="stat-card__title">${item.title}</a>
+        <h3><a href="#" class="stat-card__title">${item.title}</a></h3>
         <button class="stat-card__menu-toggle" aria-label="menu - ${item.title}" aria-expanded="false">···</button>
       </div>
       <div class="stat-card__timeframes">
