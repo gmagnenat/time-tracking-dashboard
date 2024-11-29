@@ -6,9 +6,9 @@ const tabPanels = tabsContainer.querySelectorAll(".tab__panel");
 const isDesktop = window.matchMedia("(min-width: 60em)");
 
 tabsList.setAttribute("role", "tablist");
-tabsList.querySelectorAll("li").forEach((listItem) => {
-  listItem.setAttribute("role", "presentation");
-});
+// tabsList.querySelectorAll("li").forEach((listItem) => {
+//   listItem.setAttribute("role", "presentation");
+// });
 
 tabButtons.forEach((tab, index) => {
   tab.setAttribute("role", "tab");
@@ -152,21 +152,20 @@ tabButtons.forEach((tab) => {
 
 function moveLeft() {
   const currentTab = document.activeElement;
-  if (!currentTab.parentElement.previousElementSibling) {
+  const previousTab = currentTab.previousElementSibling;
+  if (!previousTab) {
     switchTab(tabButtons[tabButtons.length - 1]);
   } else {
-    switchTab(
-      currentTab.parentElement.previousElementSibling.querySelector("a")
-    );
+    switchTab(previousTab);
   }
 }
 
 function moveRight() {
   const currentTab = document.activeElement;
-  if (!currentTab.parentElement.nextElementSibling) {
+  if (!currentTab.nextElementSibling) {
     switchTab(tabButtons[0]);
   } else {
-    switchTab(currentTab.parentElement.nextElementSibling.querySelector("a"));
+    switchTab(currentTab.nextElementSibling);
   }
 }
 
